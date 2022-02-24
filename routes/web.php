@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,4 @@ Route::get("/add-structure" , [MainController::class,'addStruct']);
 Route::post('/store-struct', [MainController::class, 'storeStructure'])->name('store-struct');
 Route::get('/add-formation' , [MainController::class,'addFormation']);
 Route::post('/store-formation' , [MainController::class,'storeFormation'])->name('store-formation');
+Route::get("/see" , [EditController::class,'edit']);
