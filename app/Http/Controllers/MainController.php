@@ -12,6 +12,18 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+
+    public function addObject(){
+        return view('main.add-object');
+    }
+
+    public function addStruct(){
+        return view('main.add-struct');
+    }
+
+    public function addFormation(){
+        return view('main.formation');
+    }
     public function index(Request $request)
     {
         if ($request->isMethod('POST')) {

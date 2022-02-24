@@ -88,15 +88,20 @@
         <div class="row">
             <div class="col-xl-2 col-lg-3 d-none d-lg-block sidebar">
                 <div class="hstack app">
-                    <div style="height: 45px; width: 45px; background-color: white; border-radius: 50px"></div>
-                    <h4 class="siteName ms-2">SITENAME</h4>
+                    <img src="{{asset('uac.jpeg')}}" style="height: 45px; width: 45px; border-radius: 50px" alt="" srcset="">
+                    <div ></div>
+                    <h4 class="siteName ms-2">UAC COLLECT</h4>
                 </div>
                 <h6 class="nav_menu">MENU</h6>
                 <div class="nav_list">
                     <h6 class="nav_list_name">Dashboard <i class="uil uil-arrow-down float-end"></i></h6>
                     <div class="vstack">
                         <div class="nav_item"><a href="" class="nav_link text-decoration-none">Partenaires</a></div>
-                        <div class="nav_item"><a href="" class="nav_link text-decoration-none">Objet Partenariat</a></div>
+                        <div class="nav_item"><a href="/add-object" class="nav_link text-decoration-none">Objet Partenariat</a></div>
+                        <div class="nav_item"><a href="/add-structure" class="nav_link text-decoration-none">Structures du Rectorat</a></div> 
+                        <div class="nav_item"><a href="/add-formation" class="nav_link text-decoration-none">Unités de formation et de Recherche impliquées
+                        </a></div> 
+
                         <div class="nav_item"><a href="" class="nav_link text-decoration-none"></a></div>
                     </div>
                 </div>
@@ -105,7 +110,7 @@
                 <div class="app_bar d-none d-lg-block shadow-lg  text-center">
                     <div class="row bg-light">
                         <div class="col-lg-3 bg-white">
-                            <form class="my-3 ms-4">
+                            <form class="my-3 ms-4 d-none">
                                 <input type="search" placeholder="Rechercher..." class="form-control"></input>
                             </form>
                         </div>
@@ -116,7 +121,7 @@
                         </div>
                         <div class="col-lg-2 text-center hstack mt-2"  class="ms-auto">
                             <div class="mx-auto" style="height: 40px; width: 40px; background-color: #2a8c28; border-radius: 50px"></div>
-                            <small class="mx-2 d-none d-xl-block" style="font-size: 12px; font-weight: 600">Isaac Dahoue</small>
+                            <small class="mx-2 d-none d-xl-block" style="font-size: 12px; font-weight: 600">Administrateur</small>
                         </div>
                     </div>
                 </div>
