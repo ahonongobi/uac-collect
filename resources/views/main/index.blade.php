@@ -214,7 +214,15 @@
                                 <input type="search" class="form-control mb-2" id="partnership_purpose" name="tel" 
                                                     placeholder="numéro de téléphone fonctionnel de l’organisation..." required/>                                
                             </div>
-
+                    <!-- start -->
+                            <div class="form-group mb-3">
+                                Avez-vous un numéro de téléphone WhatsApp (Oui ou non): Oui<input type="checkbox" id="trigger" name="question"> Non <input type="checkbox" id="trigger" name="question">
+                              </div>
+                              <div id="hidden_fields">
+                                Si Oui, quel est ce numéro ?: <input type="text" class="form-control" id="hidden_field" name="hidden">
+                              </div>
+                              
+                      <!-- end -->
                             <div class="form-group">
                                 <label for="partner_name" class="form-label">Quels sont le nom et les prénoms du répondant ?</label>
 
@@ -293,44 +301,32 @@
         })
     </script>
     <script>
-        const toggles = document.querySelectorAll('.toggle')
-
-        const fast = document.querySelector('#fast')
-        const fast1 = document.querySelector('#fast1')
-        const fast2 = document.querySelector('#fast2')
-        const fast3 = document.querySelector('#fast3')
-        const fast4 = document.querySelector('#fast4')
-        const fast5 = document.querySelector('#fast5')
-        const fast6 = document.querySelector('#fast6')
-        const faststrure = document.querySelector("#faststrure")
-toggles.forEach(toggle => toggle.addEventListener('change', (e) => doTheTrick(e.target)))
-
-function doTheTrick(theClickedOne) {
-  if (good.checked && cheap.checked && fast.checked) {
+        $(function() {
+  
+  
+  var checkbox = $("#trigger");
+  var hidden = $("#hidden_fields");
+  var populate = $("#populate");
+  
+  
+  hidden.hide();
+  
+  
+  checkbox.change(function() {
     
-    if (fast === theClickedOne) {
-      cheap.checked = false
+    if (checkbox.is(':checked')) {
+      
+      hidden.show();
+     
+      //populate.val("Dude, i'm gobi");
+    } else {
+      
+      hidden.hide();
+      
+      
     }
-    if (faststrure == theClickedOne) {
-        cheap.checked = false
-    }
-
-    if (fast1 === theClickedOne) {
-      cheap.checked = false
-    }
-
-    if (fast3 === theClickedOne) {
-      cheap.checked = false
-    }
-    if (fast4 === theClickedOne) {
-      cheap.checked = false
-    }
-
-    if (fast5 === theClickedOne) {
-      cheap.checked = false
-    }
-  }
-}
+  });
+});
     </script>
 </body>
 
