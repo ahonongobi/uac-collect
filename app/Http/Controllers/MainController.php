@@ -120,7 +120,7 @@ class MainController extends Controller
 
 
 
-                    $activity->uacStructures()->sync($value['structureUac']);
+                    // $activity->uacStructures()->sync($value['structureUac']);
 
                     //$activity->uacEntities()->sync($value['structureEntity']);
 
