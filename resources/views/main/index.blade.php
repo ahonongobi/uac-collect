@@ -136,7 +136,7 @@
 
                                                 <div>
                                                 @foreach ($uacStructures as $structure)
-                                                  <input type="checkbox" name="choice" id="cb1" /><label class="label" for="cb1">{{ $structure->name }}</label>
+                                                  <input type="checkbox" name="choice" id="cb{{ $structure->id }}" /><label class="label" for="cb{{ $structure->id }}">{{ $structure->name }}</label>
                                                   <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
                                                   <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
                                                   <input type="checkbox" name="choice" id="cb4" /><label class="label" for="cb4">Choice D</label> -->
@@ -248,14 +248,14 @@
             </div>
         </div>
     </div>
- 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
-    
+
     <script>
         var count = 1;
 
@@ -334,7 +334,7 @@
   });
 });
     </script>
-    
+
 </body>
 
 </html>

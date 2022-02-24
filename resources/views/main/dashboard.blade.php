@@ -14,9 +14,9 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($partners as $partner)
+            @foreach ($partners as $key => $partner)
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{ $key+1 }}</th>
                 <td>{{ $partner->name }}</td>
                 <td>{{ $partner->type }}</td>
                 <td>{{ $partner->partnership_purpose }}</td>

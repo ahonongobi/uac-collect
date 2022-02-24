@@ -2,26 +2,22 @@
 
 @section('content')
  <div class="container">
-     <form action="" method="get" class="mt-5">
+     <form action="{{ route('sotre-object') }}" method="post" class="mt-5">
+         @csrf
          <h5>Quel est l'objet ou quels sont les objets du partenariat ?</h5>
          <div class="form-group mt-3 mb-3">
             <label for=""></label>
-            <input type="text" name="" class="form-control" placeholder="Quel est l'objet ou quels sont les objets du partenariat ?" id="">
+            <input type="text" name="object" class="form-control" placeholder="Quel est l'objet ou quels sont les objets du partenariat ?" id="">
          </div>
-         <button type="submit" class="btn btn-success">Enrégistrer</button>
+         <button type="submit" class="btn btn-success">Ajouter</button>
      </form>
-     
+
 
      <div class="container mt-3">
         <ul>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
-            <li>Liste 1</li>
+            @foreach ($objects as $object)
+                <li>{{ $object->name }}</li>
+            @endforeach
         </ul>
      </div>
  </div>

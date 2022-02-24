@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\ImpactStructure;
+use App\Models\ObjectParteners;
 use App\Models\Others;
 use App\Models\Partner;
 use App\Models\UacEntity;
@@ -14,7 +15,8 @@ class MainController extends Controller
 {
 
     public function addObject(){
-        return view('main.add-object');
+        $objects = ObjectParteners::all();
+        return view('main.add-object', compact('objects'));
     }
 
     public function addStruct(){
@@ -45,6 +47,15 @@ class MainController extends Controller
         $formation->save();
         $formations = UacEntity::all();
         return view('main.formation', compact('formations'));
+    }
+
+    public function storeObjectParteners(Request $request){
+        $request->validate(['object' => 'required']);
+        $object = new ObjectParteners();
+        $object->name = $request->object;
+        $object->save();
+        $objects = ObjectParteners::all();
+        return view('main.add-object', compact('objects'));
     }
 
     public function index(Request $request)

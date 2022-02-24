@@ -14,3 +14,4 @@ Route::get("/add-structure" , [MainController::class,'addStruct']);
 Route::post('/store-struct', [MainController::class, 'storeStructure'])->name('store-struct');
 Route::get('/add-formation' , [MainController::class,'addFormation']);
 Route::post('/store-formation' , [MainController::class,'storeFormation'])->name('store-formation');
+Route::post('/store-object' , [MainController::class,'storeObjectParteners'])->name('sotre-object');
