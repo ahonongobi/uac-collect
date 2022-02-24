@@ -102,6 +102,7 @@
                                             aria-expanded="false" aria-controls="collapse-1">
                                             Cliquer ici pour renseigner les informations concernant la 1ère activité exécutée. Pour ajouter une nouvelle activité, il faut chaque fois cliquer sur le menu "Ajouter une activité" (Veuillez cliquer et renseigner les rubriques):
                                         </button>
+                                        
                                     </h2>
                                     <div id="collapse-1" class="accordion-collapse collapse"
                                         aria-labelledby="heading-1" data-bs-parent="#accordionExample">
@@ -278,7 +279,7 @@
                 var accordionButton = h2.find('button.accordion-button').first();
                 accordionButton.attr('data-bs-target', `#collapse-${count}`);
                 accordionButton.attr('aria-controls', `collapse-${count}`);
-                accordionButton.text(`Activité #${count} (Cliquer ici pour renseigner les informations concernant la 1ère activité exécutée. Pour ajouter une nouvelle activité, il faut chaque fois cliquer sur le menu "Ajouter une activité" (Veuillez cliquer et renseigner les rubriques)`)
+                accordionButton.text(` Activité #${count} (Cliquer ici pour renseigner les informations concernant la 1ère activité exécutée. Pour ajouter une nouvelle activité, il faut chaque fois cliquer sur le menu "Ajouter une activité" (Veuillez cliquer et renseigner les rubriques)`)
 
                 //console.log(accordionButton)
 
