@@ -96,11 +96,11 @@
                 <div class="nav_list">
                     <h6 class="nav_list_name">Dashboard <i class="uil uil-arrow-down float-end"></i></h6>
                     <div class="vstack">
-                        <div class="nav_item"><a href="" class="nav_link text-decoration-none">Partenaires</a></div>
+                        <div class="nav_item"><a href="/dashboard" class="nav_link text-decoration-none">Partenaires</a></div>
                         <div class="nav_item"><a href="/add-object" class="nav_link text-decoration-none">Objet Partenariat</a></div>
-                        <div class="nav_item"><a href="/add-structure" class="nav_link text-decoration-none">Structures du Rectorat</a></div> 
+                        <div class="nav_item"><a href="/add-structure" class="nav_link text-decoration-none">Structures du Rectorat</a></div>
                         <div class="nav_item"><a href="/add-formation" class="nav_link text-decoration-none">Unités de formation et de Recherche impliquées
-                        </a></div> 
+                        </a></div>
 
                         <div class="nav_item"><a href="" class="nav_link text-decoration-none"></a></div>
                     </div>
@@ -147,7 +147,7 @@
                         Dashbord
                     </div>
                     <div class="ms-auto">
-                        Dashboard  > Acceuil
+                        Dashboard  > Accueil
                     </div>
                 </div>
 
