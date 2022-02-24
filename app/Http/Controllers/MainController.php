@@ -90,7 +90,7 @@ class MainController extends Controller
 
         return view('main.index', compact('uacEntities', 'uacStructures'));
     }
-    
+
 
 
 
@@ -114,11 +114,11 @@ class MainController extends Controller
                         'entitled'          =>  $value['title'],
                         'year_of_execution' =>  $value['year'],
                         'partner_id'        =>  $partner->id,
-                        
+
                     ]);
-                    
-                    
-                    
+
+
+
 
                     $activity->uacStructures()->sync($value['structureUac']);
 
@@ -179,8 +179,8 @@ class MainController extends Controller
                 'identite' => $request->identite,
                 'poste' => $request->poste,
             ]);
-            
-            
+
+
             $request->session()->flash('message', 'Vos informations ont été soumis avec succès!');
 
             return back();
@@ -202,13 +202,17 @@ class MainController extends Controller
             'partnership_purpose'  => json_encode($request->partnership_purpose),
             'year_signature' => $request->year_signature,
         ]);
-        
+
         foreach($request->activity_1 as $key => $value){
             Activity::create($value);
-            
+
         }
-        
-        
+
+
+    }
+
+    public function viewDashboard(){
+        return view('main.dashboard');
     }
 }
 

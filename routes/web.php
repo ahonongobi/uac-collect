@@ -8,3 +8,4 @@ Route::match(['GET', 'POST'], '/', [
     'as'  =>  'main.index',
 ]);
 Route::post('/store',[MainController::class,'store'])->name('main.store');
+Route::get('/dashboard', [MainController::class, 'viewDashboard'])->name('dashboard');
