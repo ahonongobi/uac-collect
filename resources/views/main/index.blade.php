@@ -22,22 +22,22 @@
                 <div class="card">
                     <h3 style="background-color: #2a8c28 !important;" class="card-header text-white">FICHE DE COLLECTE DES PARTENAIRES NATIONAUX DE L’UAC</h3>
                     <div class="card-body">
-                        @if (session('message'))                            
+                        @if (session('message'))
                             <div class="alert alert-dismissible alert-success">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                 <strong>{{ session('message') }}</strong>
                             </div>
                         @endif
-                        
+
                         <form action="{{ route('main.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="partner_name" class="form-label">Intitulé de l’institution partenaire (Veuillez mentionner le nom de votre organisation)</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="partner_name" 
-                                                    placeholder="Veuilez taper le nom de votre organisation..." required/>                                
+                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="partner_name"
+                                                    placeholder="Veuilez taper le nom de votre organisation..." required/>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="partner_type" class="form-label mt-4">Type de partenaire (Veuillez choisir dans la liste suivante)</label>
                                 <select class="selectpicker d-block" data-width="100%" id="partner_type"
@@ -61,10 +61,10 @@
                                     <option value="other">Autres</option>
                                 </select> --}}
                                 <div>
-                                    
+
                                     <div class="hiddenCB">
-                                        
-                                      
+
+
                                         <div>
                                           <input type="checkbox" name="choice" id="cb9" /><label class="label" for="cb9">Formation</label>
                                           <input type="checkbox" name="choice" id="cb10" /><label class="label" for="cb10">Appui technique</label>
@@ -73,19 +73,21 @@
                                           <input type="checkbox" name="choice" id="cb13" /><label class="label" for="cb13">Appui financier</label>
                                           <input type="checkbox" name="choice" id="cb14" /><label class="label" for="cb14">Insertion professionnelle</label>
                                           <input type="checkbox" name="choice" id="cb15" /><label class="label" for="cb15">Autres</label>
-                                      
+
                                         </div>
                                       </div>
-                                   
+
                                     </div>
-                                
+
+
+
                                 <small id="emailHelp" class="form-text text-muted">
                                     Cliquez sur autre et précisez le type de partenariat
                                 </small>
                                 <div class="mt-3">
                                     <label for="">Année de signature</label>
-                                    <input type="number" min="1900" max="2099" step="1" value="{{ now()->format('Y') }}" 
-                                                    class="form-control mb-2" id="activityYear" name="year_signature" 
+                                    <input type="number" min="1900" max="2099" step="1" value="{{ now()->format('Y') }}"
+                                                    class="form-control mb-2" id="activityYear" name="year_signature"
                                                     placeholder="Année d'éxécution" required/>
                                 </div>
                             </div>
@@ -107,18 +109,18 @@
                                         <div class="accordion-body">
                                             <div class="form-group">
                                                 <label for="activityTitle" class="form-label mt-4">Intitulé de l'activité(veuillez mentionner le nom de l’activité)</label>
-                                                <input type="text" class="form-control" name="activity_1[title]" 
+                                                <input type="text" class="form-control" name="activity_1[title]"
                                                     id="activityTitle" placeholder="Intitulé de l'activité" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="activityYear" class="form-label mt-4">Année d’exécution (Veuillez choisir l’année d’exécution de l’activité avec les flèches de
                                                     direction situées à droite de la ligne suivante)</label>
 
-                                                <input type="number" min="1900" max="2099" step="1" value="{{ now()->format('Y') }}" 
-                                                    class="form-control mb-2" id="activityYear" name="activity_1[year]" 
+                                                <input type="number" min="1900" max="2099" step="1" value="{{ now()->format('Y') }}"
+                                                    class="form-control mb-2" id="activityYear" name="activity_1[year]"
                                                     placeholder="Année d'éxécution" required/>
                                             </div>
-                                            
+
                                            <div class="form-group">
                                                 <label for="partnership_purpose" class="form-label mt-4">Structures du Rectorat impliquées (Veuillez choisir dans la liste suivante)</label>
                                                     {{-- <select class="selectpicker d-block" data-width="100%"  id="partnership_purpose" name="activity_1[structureUac]"   multiple required>
@@ -129,10 +131,10 @@
                                                             </option>
                                                         @endforeach
                                                     </select> --}}
-                
+
                                                 <div class="hiddenCB">
-                                                
-                                              
+
+
                                                 <div>
                                                 @foreach ($uacStructures as $structure)
                                                   <input type="checkbox" name="choice" id="cb1" /><label class="label" for="cb1">{{ $structure->name }}</label>
@@ -142,13 +144,13 @@
                                                 @endforeach
                                                 </div>
                                               </div>
-                                            </div> 
+                                            </div>
 
-                                            
+
                                             <!-- new -->
                                             <div class="form-group">
                                                 <label for="structureEntity" class="form-label mt-4">Unités de formation et de Recherche impliquées (Veuillez choisir dans la liste suivante)</label>
-                                            <div class="hiddenCB"> 
+                                            <div class="hiddenCB">
                                                 @foreach ($uacEntities as $Entity)
                                                   <input type="checkbox" name="choice" id="{{ $Entity->id }}" /><label class="label" for="{{ $Entity->id }}">{{ $Entity->name }}</label>
                                                   <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
@@ -165,17 +167,17 @@
                                                     @endforeach
                                                 </select> --}}
                                             </div>
-                                            
-                                            
+
+
                                             <div class="form-group">
-                                                <label for="fallout_ac" class="form-label mt-4"> Résultats obtenus 
+                                                <label for="fallout_ac" class="form-label mt-4"> Résultats obtenus
                                                 </label>
                                                 <input type="text" class="form-control mb-2" name="activity_1[falloutUac][]" id="fallout_ac"
                                                     aria-describedby="falloutUacHelp" placeholder="Résultats obtenus" required>
                                                     <button type="button" style="background-color: #2a8c28;" class="add-field btn  btn-sm d-block mt-2">Ajouter un résultat</button>
                                             </div>
-                                            
-                                            
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -207,15 +209,15 @@
                             <div class="form-group">
                                 <label for="partner_name" class="form-label">Par quelle adresse email fonctionnelle peut-on contacter votre structure ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="email" 
-                                                    placeholder="Veuillez taper votre e-mail..." required/>                                
+                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="email"
+                                                    placeholder="Veuillez taper votre e-mail..." required/>
                             </div>
 
                             <div class="form-group">
                                 <label for="partner_name" class="form-label">Par quel numéro de téléphone fonctionnel peut-on joindre votre organisation ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="tel" 
-                                                    placeholder="numéro de téléphone fonctionnel de l’organisation..." required/>                                
+                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="tel"
+                                                    placeholder="numéro de téléphone fonctionnel de l’organisation..." required/>
                             </div>
                     <!-- start -->
                             <div class="form-group mb-3">
@@ -224,20 +226,20 @@
                               <div id="hidden_fields">
                                 Si Oui, quel est ce numéro ?: <input type="text" class="form-control" id="hidden_field" name="hidden">
                               </div>
-                              
+
                       <!-- end -->
                             <div class="form-group">
                                 <label for="partner_name" class="form-label">Quels sont le nom et les prénoms du répondant ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="identite" 
-                                                    placeholder="Identité du répondant" required/>                                
+                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="identite"
+                                                    placeholder="Identité du répondant" required/>
                             </div>
 
                             <div class="form-group">
                                 <label for="partner_name" class="form-label">Quel est le poste occupé par le répondant au sein de la structure ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="poste" 
-                                                    placeholder="Le poste occupé" required/>                                
+                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="poste"
+                                                    placeholder="Le poste occupé" required/>
                             </div>
                             <span>Veuillez cliquer sur le bouton "Soumettre ci-dessous" pour soumettre les informations renseignées.</span> <br>
                             <button style="background-color: #2a8c28;" class="btn btn-primary mt-3" type="submit">Soumettre</button>
@@ -262,7 +264,7 @@
             $('.selectpicker').selectpicker();
 
             var accordionItemFirst = $('.accordion-item').first()
-    
+
             $('#add-activity').on('click', function(e) {
                 var accordionItem = accordionItemFirst.clone(true, true)
 
@@ -271,9 +273,9 @@
                 count++
 
                 //var count = count;
-    
+
                 h2.attr('id', h2.attr('id').split('-')[0]+'-'+(count));
-    
+
                 var accordionButton = h2.find('button.accordion-button').first();
                 accordionButton.attr('data-bs-target', `#collapse-${count}`);
                 accordionButton.attr('aria-controls', `collapse-${count}`);
@@ -281,7 +283,7 @@
 
                 //console.log(accordionButton)
 
-                var inputs = accordionItem.find("input[type='text'], input[type='number'], select")  
+                var inputs = accordionItem.find("input[type='text'], input[type='number'], select")
 
                 inputs.each(function () {
                     $(this).val('')
@@ -289,13 +291,13 @@
                     $(this).attr('name', $(this).attr('name').split('_')[0] + '_' + `${count}` + $(this).attr('name').split('_')[1].substring(1, $(this).attr('name').split('_')[1].length))
                     $(this).prev('label').attr('for', $(this).prev('label').attr('for')+ '_' + `${count}`)
                 })
-    
+
                 var accordionCollapse = accordionItem.find('div.accordion-collapse').first();
                 accordionCollapse.attr('id', `collapse-${count}`);
                 accordionCollapse.attr('aria-labelledby', `heading-${count}`);
 
                 //console.log(accordionItem.html())
-    
+
                 accordionItem.insertAfter($('.accordion-item').last())
             });
 
@@ -307,28 +309,28 @@
     </script>
     <script>
         $(function() {
-  
-  
+
+
   var checkbox = $("#trigger");
   var hidden = $("#hidden_fields");
   var populate = $("#populate");
-  
-  
+
+
   hidden.hide();
-  
-  
+
+
   checkbox.change(function() {
-    
+
     if (checkbox.is(':checked')) {
-      
+
       hidden.show();
-     
+
       //populate.val("Dude, i'm gobi");
     } else {
-      
+
       hidden.hide();
-      
-      
+
+
     }
   });
 });

@@ -18,12 +18,35 @@ class MainController extends Controller
     }
 
     public function addStruct(){
-        return view('main.add-struct');
+        $uac_structures = UacStructure::all();
+        return view('main.add-struct', compact('uac_structures'));
+    }
+
+    public function storeStructure(Request $request){
+        $request->validate(['uac_structure' => 'required']);
+
+        $struct = new UacStructure();
+        $struct->name = $request->uac_structure;
+        $struct->save();
+        $uac_structures = UacStructure::all();
+        return view('main.add-struct', compact('uac_structures'));
     }
 
     public function addFormation(){
-        return view('main.formation');
+        $formations = UacEntity::all();
+        return view('main.formation', compact('formations'));
     }
+
+    public function storeFormation(Request $request){
+        $request->validate(['formation' => 'required']);
+
+        $formation = new UacEntity();
+        $formation->name = $request->formation;
+        $formation->save();
+        $formations = UacEntity::all();
+        return view('main.formation', compact('formations'));
+    }
+
     public function index(Request $request)
     {
         if ($request->isMethod('POST')) {
@@ -132,7 +155,7 @@ class MainController extends Controller
 
 
 
-                    $activity->uacStructures()->sync($value['structureUac']);
+                    // $activity->uacStructures()->sync($value['structureUac']);
 
                     //$activity->uacEntities()->sync($value['structureEntity']);
 
@@ -224,7 +247,8 @@ class MainController extends Controller
     }
 
     public function viewDashboard(){
-        return view('main.dashboard');
+        $partners = Partner::all();
+        return view('main.dashboard', compact('partners'));
     }
 }
 
