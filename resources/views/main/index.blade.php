@@ -9,11 +9,15 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" />
 </head>
 
 <body>
     <div class="container">
         <div class="row">
+            <div class="d-flex justify-content-center">
+                <img src="{{asset('uac.jpeg')}}" height="100" width="100" alt="">
+            </div>
             <div class="col-md-10 mx-auto mt-5 mb-5">
                 <div class="card">
                     <h3 style="background-color: #2a8c28 !important;" class="card-header text-white">FICHE DE COLLECTE DES PARTENAIRES NATIONAUX DE L’UAC</h3>
@@ -244,12 +248,14 @@
             </div>
         </div>
     </div>
+ 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+    
     <script>
         var count = 1;
 
@@ -328,6 +334,7 @@
   });
 });
     </script>
+    
 </body>
 
 </html>
