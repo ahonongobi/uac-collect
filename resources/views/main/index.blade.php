@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -43,9 +44,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="partnership_purpose" class="form-label mt-4">Objet du partenariat (Veuillez choisir dans la liste suivante) a selectionner plusieurs si autres afficher
-                                    zone a saisir</label>
-                                <select class="selectpicker d-block" data-width="100%" multiple id="partnership_purpose"
+                                <label for="partnership_purpose" class="form-label mt-4">Quel est l'objet ou quels sont les objets du partenariat ? (plusieurs choix sont possibles, si l'intitulé d'un objet n'est pas dans la liste, il faut sélectionner "Autre (à préciser)":</label>
+                                {{--<select class="selectpicker d-block" data-width="100%" multiple id="partnership_purpose"
                                     name="partnership_purpose[]" required>
                                     <option selected="">Veuillez choisir dans la liste suivante</option>
                                     <option value="training">Formation</option>
@@ -55,7 +55,27 @@
                                     <option value="mobility">Mobilité</option>
                                     <option value="financial_support">Appui financier</option>
                                     <option value="other">Autres</option>
-                                </select>
+                                </select> --}}
+                                <div>
+                                    
+                                    <div class="hiddenCB">
+                                        
+                                      
+                                        <div>
+                                          <input type="checkbox" name="choice" id="cb9" /><label class="label" for="cb9">Formation</label>
+                                          <input type="checkbox" name="choice" id="cb10" /><label class="label" for="cb10">Appui technique</label>
+                                          <input type="checkbox" name="choice" id="cb11" /><label class="label" for="cb11">Recherche</label>
+                                          <input type="checkbox" name="choice" id="cb12" /><label class="label" for="cb12">Mobilité</label>
+                                          <input type="checkbox" name="choice" id="cb13" /><label class="label" for="cb13">Appui financier</label>
+                                          <input type="checkbox" name="choice" id="cb14" /><label class="label" for="cb14">Insertion professionnelle</label>
+                                          <input type="checkbox" name="choice" id="cb15" /><label class="label" for="cb15">Autres</label>
+                                      
+                                        </div>
+                                      </div>
+                                   
+                                    </div>
+                                
+                                
 
                                 <small id="emailHelp" class="form-text text-muted">
                                     Cliquez sur autre et précisez le type de partenariat
@@ -68,7 +88,7 @@
                                 </div>
                             </div>
                             <div style="" class="container mt-5 mb-3 bg-grey text-center">
-                                <h3 style="color: #2a8c28 " clas="mt-5 py-5">Différentes activités exécutées depuis la date de signature de l’accord</h3>
+                                <h3 style="color: #2a8c28" clas="mt-5 py-5">Différentes activités exécutées depuis la date de signature de l’accord</h3>
                             </div>
                             <div class="accordion mt-4" id="accordionExample">
                                 <div class="accordion-item">
@@ -76,7 +96,7 @@
                                         <button class="accordion-button collapsed text-white" style="background-color: #2a8c28;" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapse-1"
                                             aria-expanded="false" aria-controls="collapse-1">
-                                            Activité 1 (Veuillez cliquer et renseigner les rubriques suggérées)
+                                            Cliquer ici pour renseigner les informations concernant la 1ère activité exécutée. Pour ajouter une nouvelle activité, il faut chaque fois cliquer sur le menu "Ajouter une activité" (Veuillez cliquer et renseigner les rubriques):
                                         </button>
                                     </h2>
                                     <div id="collapse-1" class="accordion-collapse collapse"
@@ -96,30 +116,51 @@
                                                     placeholder="Année d'éxécution" required/>
                                             </div>
                                             
-                                            <div class="form-group">
+                                           <div class="form-group">
                                                 <label for="partnership_purpose" class="form-label mt-4">Structures du Rectorat impliquées (Veuillez choisir dans la liste suivante)</label>
-                                                    <select class="selectpicker d-block" data-width="100%"  id="partnership_purpose" name="activity_1[structureUac]"   multiple required>
+                                                    {{-- <select class="selectpicker d-block" data-width="100%"  id="partnership_purpose" name="activity_1[structureUac]"   multiple required>
                                                         <option value="" selected="">Veuillez choisir dans la liste suivante</option>
                                                         @foreach ($uacStructures as $structure)
                                                             <option value="{{ $structure->id }}">
                                                                 {{ $structure->name }}
                                                             </option>
                                                         @endforeach
-                                                    </select>
+                                                    </select> --}}
                 
+                                                <div class="hiddenCB">
                                                 
-                                            </div>
+                                              
+                                                <div>
+                                                @foreach ($uacStructures as $structure)
+                                                  <input type="checkbox" name="choice" id="cb1" /><label class="label" for="cb1">{{ $structure->name }}</label>
+                                                  <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
+                                                  <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
+                                                  <input type="checkbox" name="choice" id="cb4" /><label class="label" for="cb4">Choice D</label> -->
+                                                @endforeach
+                                                </div>
+                                              </div>
+                                            </div> 
+
+                                            
                                             <!-- new -->
                                             <div class="form-group">
                                                 <label for="structureEntity" class="form-label mt-4">Unités de formation et de Recherche impliquées (Veuillez choisir dans la liste suivante)</label>
-                                                <select style="position: absolute;" id="structureEntity" name="activity_1[structureEntity]"  class="selectpicker d-block" data-width="100%" multiple>
+                                            <div class="hiddenCB"> 
+                                                @foreach ($uacEntities as $Entity)
+                                                  <input type="checkbox" name="choice" id="{{ $Entity->id }}" /><label class="label" for="{{ $Entity->id }}">{{ $Entity->name }}</label>
+                                                  <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
+                                                  <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
+                                                  <input type="checkbox" name="choice" id="cb4" /><label class="label" for="cb4">Choice D</label> -->
+                                                @endforeach
+                                            </div>
+                                                {{--<select style="position: absolute;" id="structureEntity" name="activity_1[structureEntity]"  class="selectpicker d-block" data-width="100%" multiple>
                                                     <option value="" selected="">Veuillez choisir dans la liste suivante</option>
                                                     @foreach ($uacEntities as $Entity)
                                                         <option value="{{ $Entity->id }}">
                                                             {{ $Entity->name }}
                                                         </option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
                                             </div>
                                             
                                             
@@ -140,20 +181,20 @@
                                     Ajouter une activité
                                 </button>
                             </div>
-                            <div class="container">
-                                <h3 style="color: #2a8c28">Difficultés rencontrées dans l’exécution du partenariat</h3>
+                            <div class="container mt-5">
+                                <h3 style="color: #2a8c28">Dans l'exécution du partenariat entre votre structure et l'UAC, quelles sont les difficultés que vous avez rencontrées ?</h3>
                             </div>
                             <div class="form-group">
-                                <label for="suggestion" class="form-label mt-4">Difficultés rencontrées
+                                <label for="suggestion" class="form-label mt-4">Saisissez toutes ces difficultés dans la zone de saisie ci-dessous.
                                     </label>
                                 <textarea class="form-control" id="suggestion" rows="3" name="diffulte" required></textarea>
                             </div>
                             <div class="container mt-3">
-                                <h3 style="color: #2a8c28;">Suggestions pour aplanir les difficultés (Veuillez cliquer l’onglet ci-dessous pour mentionner)</h3>
+                                <h3 style="color: #2a8c28;">Quelles sont les suggestions que vous pouvez formuler pour aplanir ces difficultés ?</h3>
                             </div>
                             <div class="form-group">
-                                <label for="suggestion" class="form-label mt-4">Suggestion pour une dynamisation du
-                                    patenariat</label>
+                                <label for="suggestion" class="form-label mt-4">Saisissez vos suggestions dans la zone de saisie ci-dessous.
+                                </label>
                                 <textarea class="form-control" id="suggestion" rows="3" name="suggestion" required></textarea>
                             </div>
 
@@ -161,33 +202,33 @@
                                 <h3 style="color: #2a8c28;">Quelques renseignements importants</h3>
                             </div>
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">E-mail</label>
+                                <label for="partner_name" class="form-label">Par quelle adresse email fonctionnelle peut-on contacter votre structure ?</label>
 
                                 <input type="search" class="form-control mb-2" id="partnership_purpose" name="email" 
                                                     placeholder="Veuillez taper votre e-mail..." required/>                                
                             </div>
 
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Numéro de téléphone fonctionnel de l’organisation</label>
+                                <label for="partner_name" class="form-label">Par quel numéro de téléphone fonctionnel peut-on joindre votre organisation ?</label>
 
                                 <input type="search" class="form-control mb-2" id="partnership_purpose" name="tel" 
                                                     placeholder="numéro de téléphone fonctionnel de l’organisation..." required/>                                
                             </div>
 
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Identité du répondant</label>
+                                <label for="partner_name" class="form-label">Quels sont le nom et les prénoms du répondant ?</label>
 
                                 <input type="search" class="form-control mb-2" id="partnership_purpose" name="identite" 
                                                     placeholder="Identité du répondant" required/>                                
                             </div>
 
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Le poste occupé</label>
+                                <label for="partner_name" class="form-label">Quel est le poste occupé par le répondant au sein de la structure ?</label>
 
                                 <input type="search" class="form-control mb-2" id="partnership_purpose" name="poste" 
                                                     placeholder="Le poste occupé" required/>                                
                             </div>
-                            
+                            <span>Veuillez cliquer sur le bouton "Soumettre ci-dessous" pour soumettre les informations renseignées.</span> <br>
                             <button style="background-color: #2a8c28;" class="btn btn-primary mt-3" type="submit">Soumettre</button>
                         </form>
                     </div>
@@ -223,7 +264,7 @@
                 var accordionButton = h2.find('button.accordion-button').first();
                 accordionButton.attr('data-bs-target', `#collapse-${count}`);
                 accordionButton.attr('aria-controls', `collapse-${count}`);
-                accordionButton.text(`Activité #${count} (Veuillez cliquer et renseigner les rubriques suggérées)`)
+                accordionButton.text(`Activité #${count} (Cliquer ici pour renseigner les informations concernant la 1ère activité exécutée. Pour ajouter une nouvelle activité, il faut chaque fois cliquer sur le menu "Ajouter une activité" (Veuillez cliquer et renseigner les rubriques)`)
 
                 //console.log(accordionButton)
 
@@ -250,6 +291,46 @@
                 $(this).parent().find("input[type=text]").first().val('');
             })
         })
+    </script>
+    <script>
+        const toggles = document.querySelectorAll('.toggle')
+
+        const fast = document.querySelector('#fast')
+        const fast1 = document.querySelector('#fast1')
+        const fast2 = document.querySelector('#fast2')
+        const fast3 = document.querySelector('#fast3')
+        const fast4 = document.querySelector('#fast4')
+        const fast5 = document.querySelector('#fast5')
+        const fast6 = document.querySelector('#fast6')
+        const faststrure = document.querySelector("#faststrure")
+toggles.forEach(toggle => toggle.addEventListener('change', (e) => doTheTrick(e.target)))
+
+function doTheTrick(theClickedOne) {
+  if (good.checked && cheap.checked && fast.checked) {
+    
+    if (fast === theClickedOne) {
+      cheap.checked = false
+    }
+    if (faststrure == theClickedOne) {
+        cheap.checked = false
+    }
+
+    if (fast1 === theClickedOne) {
+      cheap.checked = false
+    }
+
+    if (fast3 === theClickedOne) {
+      cheap.checked = false
+    }
+    if (fast4 === theClickedOne) {
+      cheap.checked = false
+    }
+
+    if (fast5 === theClickedOne) {
+      cheap.checked = false
+    }
+  }
+}
     </script>
 </body>
 
