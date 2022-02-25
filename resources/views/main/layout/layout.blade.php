@@ -88,9 +88,12 @@
         <div class="row">
             <div class="col-xl-2 col-lg-3 d-none d-lg-block sidebar">
                 <div class="hstack app">
+                    <a href="/dashboard">
                     <img src="{{asset('uac.jpeg')}}" style="height: 45px; width: 45px; border-radius: 50px" alt="" srcset="">
                     <div ></div>
+                </a>
                     <h4 class="siteName ms-2">UAC COLLECT</h4>
+                    
                 </div>
                 <h6 class="nav_menu">MENU</h6>
                 <div class="nav_list">
