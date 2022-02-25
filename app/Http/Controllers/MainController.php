@@ -14,6 +14,31 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
 
+    public function storeData(Request $request){
+        dd($request);
+        $request->validate([
+            'partner_name' => 'required',
+            'partner_type' => 'required',
+            'year_signature' => 'required',
+            'object' => 'required'
+        ]);
+
+        $parters = new Partner();
+
+        $parters->name = $request->partner_name;
+        $parters->type = $request->partner_type;
+        $parters->partnership_purpose = $request->object;
+        $parters->year_signature = $request->year_signature;
+        dd($parters);
+
+        $uacEntities = UacEntity::all();
+        $uacStructures = UacStructure::all();
+        $objects = ObjectParteners::all();
+
+        return view('main.index', compact('uacEntities', 'uacStructures', 'objects'));
+
+    }
+
     public function addObject(){
         $objects = ObjectParteners::all();
         return view('main.add-object', compact('objects'));
@@ -133,8 +158,9 @@ class MainController extends Controller
 
         $uacEntities = UacEntity::all();
         $uacStructures = UacStructure::all();
+        $objects = ObjectParteners::all();
 
-        return view('main.index', compact('uacEntities', 'uacStructures'));
+        return view('main.index', compact('uacEntities', 'uacStructures' ,'objects'));
     }
 
 
