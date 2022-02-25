@@ -18,12 +18,12 @@ class Activity extends Model
 
     public function uacStructures()
     {
-        return $this->belongsToMany(UacStructure::class);
+        return $this->hasMany(UacStructure::class);
     }
 
     public function uacEntities()
     {
-        return $this->belongsToMany(UacEntity::class);
+        return $this->hasMany(UacEntity::class);
     }
 
     public function otherUacStructuresImplies()
@@ -50,4 +50,6 @@ class Activity extends Model
     {
         return $this->hasMany(FalloutUac::class);
     }
+
+
 }

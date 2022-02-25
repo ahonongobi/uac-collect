@@ -11,8 +11,13 @@ class UacEntity extends Model
 
     protected $guarded = [];
 
-    public function activities()
+    // public function activities()
+    // {
+    //     return $this->belongsToMany(Activity::class);
+    // }
+
+    public function activity()
     {
-        return $this->belongsToMany(Activity::class);
+        return $this->belongsTo(Activity::class);
     }
 }

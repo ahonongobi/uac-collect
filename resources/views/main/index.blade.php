@@ -74,7 +74,7 @@
 
                                         <div>
                                             @foreach ($objects as $object)
-                                                <input type="checkbox" name="object"
+                                                <input type="checkbox" name="object" value="{{ $object->name }}"
                                                     id="cb{{ $object->id }}" /><label class="label"
                                                     for="cb{{ $object->id }}">{{ $object->name }}</label>
                                             @endforeach
@@ -160,11 +160,11 @@
 
                                                     <div>
                                                         @foreach ($uacStructures as $structure)
-                                                            <input type="checkbox" name="activity_1[structureUac][]" value="{{ $structure->name }}"
-                                                                id="oo.{{ $structure->id }}" aria-describedby="falloutUacHelp" />
+                                                            <input type="checkbox" name="activity_1[uacStructure][]" value="{{ $structure->name }}"
+                                                                id="structure.{{ $structure->id }}" aria-describedby="structureUac" />
                                                                 <label
                                                                 class="label"
-                                                                for="oo.{{ $structure->id }}">{{ $structure->name }}</label>
+                                                                for="structure.{{ $structure->id }}">{{ $structure->name }}</label>
                                                             <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
                                                   <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
                                                   <input type="checkbox" name="choice" id="cb4" /><label class="label" for="cb4">Choice D</label> -->
@@ -181,10 +181,10 @@
                                                     suivante)</label>
                                                 <div class="hiddenCB">
                                                     @foreach ($uacEntities as $Entity)
-                                                        <input type="checkbox" name="activity_1[structureEntity][]" value="{{ $Entity->name }}"
-                                                            id="{{ $Entity->id }}" aria-describedby="falloutUacHelp" />
+                                                        <input type="checkbox" name="activity_1[uacEntity][]" value="{{ $Entity->name }}"
+                                                            id="entity.{{ $Entity->id }}" aria-describedby="structureEntity" />
                                                         <label class="label"
-                                                            for="{{ $Entity->id }}">{{ $Entity->name }}</label>
+                                                            for="entity.{{ $Entity->id }}">{{ $Entity->name }}</label>
                                                         <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
                                                   <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
                                                   <input type="checkbox" name="choice" id="cb4" /><label class="label" for="cb4">Choice D</label> -->
