@@ -74,7 +74,7 @@
 
                                         <div>
                                             @foreach ($objects as $object)
-                                                <input type="checkbox" name="object" value="{{ $object->name }}"
+                                                <input type="checkbox" name="object[]" value="{{ $object->name }}"
                                                     id="cb{{ $object->id }}" /><label class="label"
                                                     for="cb{{ $object->id }}">{{ $object->name }}</label>
                                             @endforeach
@@ -231,7 +231,7 @@
                                 <label for="suggestion" class="form-label mt-4">Saisissez toutes ces difficultés dans la
                                     zone de saisie ci-dessous.
                                 </label>
-                                <textarea class="form-control" id="suggestion" rows="3" name="diffulte"
+                                <textarea class="form-control" id="suggestion" rows="3" name="difficults"
                                     required></textarea>
                             </div>
                             <div class="container mt-3">
@@ -242,7 +242,7 @@
                                 <label for="suggestion" class="form-label mt-4">Saisissez vos suggestions dans la zone
                                     de saisie ci-dessous.
                                 </label>
-                                <textarea class="form-control" id="suggestion" rows="3" name="suggestion"
+                                <textarea class="form-control" id="suggestion" rows="3" name="suggestions"
                                     required></textarea>
                             </div>
 
@@ -261,7 +261,7 @@
                                 <label for="partner_name" class="form-label">Par quel numéro de téléphone
                                     fonctionnel peut-on joindre votre organisation ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="tel"
+                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="phone"
                                     placeholder="numéro de téléphone fonctionnel de l’organisation..." required />
                             </div>
                             <!-- start -->
@@ -272,7 +272,7 @@
                             </div>
                             <div id="hidden_fields">
                                 Si Oui, quel est ce numéro ?: <input type="text" class="form-control"
-                                    id="hidden_field" name="hidden">
+                                    id="hidden_field" name="phone_whatsapp">
                             </div>
 
                             <!-- end -->

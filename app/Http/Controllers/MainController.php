@@ -15,7 +15,7 @@ class MainController extends Controller
 {
 
     public function storeData(Request $request){
-        // dd($request);
+        //dd($request);
         $request->validate([
             'partner_name' => 'required',
             'partner_type' => 'required',
@@ -23,13 +23,31 @@ class MainController extends Controller
             'object' => 'required'
         ]);
 
-        $parters = new Partner();
+        $objects = "";
+        $object = "";
 
-        $parters->name = $request->partner_name;
-        $parters->type = $request->partner_type;
-        $parters->partnership_purpose = $request->object;
-        $parters->year_signature = $request->year_signature;
-        $parters->save();
+        // $parters = new Partner();
+
+        // $parters->name = $request->partner_name;
+        // $parters->type = $request->partner_type;
+        // $parters->partnership_purpose = $request->object;
+        // $parters->year_signature = $request->year_signature;
+        // $parters->suggestions = $request->suggestions;
+        // $parters->difficults = $request->difficults;
+        foreach($request->object as $mot){
+            $objects = $objects. ','.$mot;
+        }
+
+        Partner::firstOrCreate([
+            'name' => $request->partner_name,
+            'type' => $request->partner_type,
+            'partnership_purpose' => $objects,
+            'year_signature' => $request->year_signature,
+            'suggestions' => $request->suggestions,
+            'difficults' => $request->difficults,
+        ]);
+
+        //$parters->save();
         $entier = "";
         $nb = 0;
         $j = count($request->request);
@@ -41,10 +59,11 @@ class MainController extends Controller
                 $nb = $nb+1;
             }
         }
-
+            $partner = Partner::latest()->first();
             if($nb >= 1){
                 $structures = "";
                 $entities = "";
+                $falloutUacs = "";
                 $activite = new Activity();
                 $activite->entitled = $request->activity_1['title'];
                 $activite->year_of_execution = $request->activity_1['year'];
@@ -60,17 +79,26 @@ class MainController extends Controller
                 }
                 $activite->structures = $structures;
                 $activite->entities = $entities;
+                $activite->partner_id = $partner->id;
+                foreach($request->activity_1['falloutUac'] as $mot){
+                    $falloutUacs = $falloutUacs. ','.$mot;
+                }
+
+                $activite->resultat = $falloutUacs;
+
+                $activite->save();
             }
 
 
             if($nb >= 2){
                 $structures = "";
                 $entities = "";
+                $falloutUacs = "";
                 $activite = new Activity();
                 $activite->entitled = $request->activity_2['title'];
                 $activite->year_of_execution = $request->activity_2['year'];
-                $tab = $request->activity_2['uacStructure'];
-                $tab2 = $request->activity_2['uacEntity'];
+                $tab = $request->activity_1['uacStructure'];
+                $tab2 = $request->activity_1['uacEntity'];
 
                 for ($i=0; $i < count($tab); $i++){
                     $structures = $structures. ','.$tab[$i];
@@ -81,6 +109,12 @@ class MainController extends Controller
                 }
                 $activite->structures = $structures;
                 $activite->entities = $entities;
+                $activite->partner_id = $partner->id;
+                foreach($request->activity_2['falloutUac'] as $mot){
+                    $falloutUacs = $falloutUacs. ','.$mot;
+                }
+
+                $activite->resultat = $falloutUacs;
                 $activite->save();
 
             }
@@ -88,11 +122,12 @@ class MainController extends Controller
             if($nb >=  3){
                 $structures = "";
                 $entities = "";
+                $falloutUacs = "";
                 $activite = new Activity();
                 $activite->entitled = $request->activity_3['title'];
                 $activite->year_of_execution = $request->activity_3['year'];
-                $tab = $request->activity_3['uacStructure'];
-                $tab2 = $request->activity_3['uacEntity'];
+                $tab = $request->activity_1['uacStructure'];
+                $tab2 = $request->activity_1['uacEntity'];
 
                 for ($i=0; $i < count($tab); $i++){
                     $structures = $structures. ','.$tab[$i];
@@ -103,6 +138,12 @@ class MainController extends Controller
                 }
                 $activite->structures = $structures;
                 $activite->entities = $entities;
+                $activite->partner_id = $partner->id;
+                foreach($request->activity_3['falloutUac'] as $mot){
+                    $falloutUacs = $falloutUacs. ','.$mot;
+                }
+
+                $activite->resultat = $falloutUacs;
                 $activite->save();
 
             }
@@ -110,11 +151,12 @@ class MainController extends Controller
             if($nb >= 4){
                 $structures = "";
                 $entities = "";
+                $falloutUacs = "";
                 $activite = new Activity();
                 $activite->entitled = $request->activity_4['title'];
                 $activite->year_of_execution = $request->activity_4['year'];
-                $tab = $request->activity_4['uacStructure'];
-                $tab2 = $request->activity_4['uacEntity'];
+                $tab = $request->activity_1['uacStructure'];
+                $tab2 = $request->activity_1['uacEntity'];
 
                 for ($i=0; $i < count($tab); $i++){
                     $structures = $structures. ','.$tab[$i];
@@ -125,9 +167,27 @@ class MainController extends Controller
                 }
                 $activite->structures = $structures;
                 $activite->entities = $entities;
+                $activite->partner_id = $partner->id;
+                foreach($request->activity_4['falloutUac'] as $mot){
+                    $falloutUacs = $falloutUacs. ','.$mot;
+                }
+
+                $activite->resultat = $falloutUacs;
                 $activite->save();
 
             }
+
+            $other_info = new Others();
+            $other_info->partner_id = $partner->id;
+            $other_info->email = $request->email;
+            $other_info->phone = $request->phone;
+            $other_info->phone_whatsapp = $request->phone_whatsapp;
+            $other_info->identite = $request->identite;
+            $other_info->poste = $request->poste;
+            $other_info->save();
+
+
+
 
 
 
