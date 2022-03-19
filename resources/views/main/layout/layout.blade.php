@@ -10,6 +10,7 @@
 
     <!--==================== UNICONS ====================-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    @livewireStyles()
 </head>
 
 <style type="text/css">
@@ -23,7 +24,7 @@
     }
     .content {
         height: 100vh;
-        overflow: hidden;
+        overflow: auto;
     }
     .app_bar {
         background-color: #fff;
@@ -93,7 +94,7 @@
                     <div ></div>
                 </a>
                     <h4 class="siteName ms-2">UAC COLLECT</h4>
-                    
+
                 </div>
                 <h6 class="nav_menu">MENU</h6>
                 <div class="nav_list">
@@ -102,10 +103,8 @@
                         <div class="nav_item"><a href="/dashboard" class="nav_link text-decoration-none">Partenaires</a></div>
                         <div class="nav_item"><a href="/add-object" class="nav_link text-decoration-none">Objet Partenariat</a></div>
                         <div class="nav_item"><a href="/add-structure" class="nav_link text-decoration-none">Structures du Rectorat</a></div>
-                        <div class="nav_item"><a href="/add-formation" class="nav_link text-decoration-none">Unités de formation et de Recherche impliquées
-                        </a></div>
-
-                        <div class="nav_item"><a href="" class="nav_link text-decoration-none"></a></div>
+                        <div class="nav_item"><a href="/add-formation" class="nav_link text-decoration-none">Unités de formation et de Recherche impliquées</a></div>
+                        <div class="nav_item"><a href="/add-type" class="nav_link text-decoration-none">Type de partenariat</a></div>
                     </div>
                 </div>
             </div>
@@ -183,7 +182,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+@livewireScripts()
 
 </body>
 </html>

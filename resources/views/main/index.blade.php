@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" />
+    @livewireStyles
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <!--==================== UNICONS ====================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 
 <body>
@@ -21,7 +25,7 @@
             </div>
             <div class="col-md-10 mx-auto mt-5 mb-5">
                 <div class="card">
-                    <h3 style="background-color: #2a8c28 !important;" class="card-header text-white">FICHE DE COLLECTE
+                    <h3 style="background-color: #2a8c28 !important;" class="card-header text-white text-center">FICHE DE COLLECTE
                         DES PARTENAIRES NATIONAUX DE L’UAC</h3>
                     <div class="card-body">
                         @if (session('message'))
@@ -34,26 +38,29 @@
                         <form action="{{ route('main.store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Intitulé de l’institution partenaire
+                                <livewire:search/>
+                                {{-- <label for="partner_name" class="form-label">Intitulé de l’institution partenaire
                                     (Veuillez mentionner le nom de votre organisation)</label>
 
                                 <input type="search" class="form-control mb-2" id="partnership_purpose"
                                     name="partner_name" placeholder="Veuilez taper le nom de votre organisation..."
-                                    required />
+                                    required /> --}}
                             </div>
 
                             <div class="form-group">
-                                <label for="partner_type" class="form-label mt-4">Type de partenaire (Veuillez choisir
+                                <label for="partner_type" class="form-label mt-4">2. Type de partenaire (Veuillez choisir
                                     dans la liste suivante)</label>
                                 <select class="selectpicker d-block" data-width="100%" id="partner_type"
                                     name="partner_type" required>
-                                    <option value="public">Public</option>
-                                    <option value="parapublic">Parapublic</option>
-                                    <option value="private">Privé</option>
+                                    @foreach ($types as $type)
+                                        <option value="Collectivité locale">{{ $type->name }}</option>
+                                    @endforeach
+
+
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="partnership_purpose" class="form-label mt-4">Quel est l'objet ou quels sont
+                                <label for="partnership_purpose" class="form-label mt-4">3. Quel est l'objet ou quels sont
                                     les objets du partenariat ? (plusieurs choix sont possibles, si l'intitulé d'un
                                     objet n'est pas dans la liste, il faut sélectionner "Autre (à préciser)":</label>
                                 {{-- <select class="selectpicker d-block" data-width="100%" multiple id="partnership_purpose"
@@ -75,8 +82,8 @@
                                         <div>
                                             @foreach ($objects as $object)
                                                 <input type="checkbox" name="object[]" value="{{ $object->name }}"
-                                                    id="cb{{ $object->id }}" /><label class="label"
-                                                    for="cb{{ $object->id }}">{{ $object->name }}</label>
+                                                    id="cb{{ $object->id }}" /><label class="label mt-2"
+                                                    for="cb{{ $object->id }}">{{ $object->name }} <i class="uil uil-check-circle ischeck"></i></label>
                                             @endforeach
                                             {{-- <input type="checkbox" name="choice" id="cb9" /><label class="label" for="cb9">Formation</label>
                                           <input type="checkbox" name="choice" id="cb10" /><label class="label" for="cb10">Appui technique</label>
@@ -85,26 +92,30 @@
                                           <input type="checkbox" name="choice" id="cb13" /><label class="label" for="cb13">Appui financier</label>
                                           <input type="checkbox" name="choice" id="cb14" /><label class="label" for="cb14">Insertion professionnelle</label>
                                           <input type="checkbox" name="choice" id="cb15" /><label class="label" for="cb15">Autres</label> --}}
-
+                                          <input type="checkbox" name="autre"
+                                          id="cbAutre" /><label class="label mt-2"
+                                          for="cbAutre">Autre (à préciser)</label>
                                         </div>
                                     </div>
 
                                 </div>
 
-
-
-                                <small id="emailHelp" class="form-text text-muted">
-                                    Cliquez sur autre et précisez le type de partenariat
-                                </small>
+                                {{-- <small id="emailHelp" class="form-text text-muted">
+                                    Autre Objet de partenariat
+                                </small> --}}
+                                <div class="form-group mt-2" id="autre">
+                                    <input type="text" class="form-control mb-2" id="" name="autre"
+                                        placeholder="Veuillez taper l'objet du partenariat manquant  " />
+                                </div>
                                 <div class="mt-3">
-                                    <label for="">Année de signature</label>
+                                    <label for="">4. Année de signature</label>
                                     <input type="number" min="1900" max="2099" step="1"
                                         value="{{ now()->format('Y') }}" class="form-control mb-2" id="activityYear"
                                         name="year_signature" placeholder="Année d'éxécution" required />
                                 </div>
                             </div>
                             <div style="" class="container mt-5 mb-3 bg-grey text-center">
-                                <h3 style="color: #2a8c28" clas="mt-5 py-5">Différentes activités exécutées depuis la
+                                <h3 style="color: #2a8c28" clas="mt-5 py-5">5. Différentes activités exécutées depuis la
                                     date de signature de l’accord</h3>
                             </div>
                             <div class="accordion mt-4" id="accordionExample">
@@ -125,13 +136,13 @@
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             <div class="form-group">
-                                                <label for="activityTitle" class="form-label mt-4">Intitulé de
+                                                <label for="activityTitle" class="form-label mt-4">5.1 Intitulé de
                                                     l'activité(veuillez mentionner le nom de l’activité)</label>
                                                 <input type="text" class="form-control" name="activity_1[title]"
                                                     id="activityTitle" placeholder="Intitulé de l'activité" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="activityYear" class="form-label mt-4">Année d’exécution
+                                                <label for="activityYear" class="form-label mt-4">5.2 Année d’exécution
                                                     (Veuillez choisir l’année d’exécution de l’activité avec les flèches
                                                     de
                                                     direction situées à droite de la ligne suivante)</label>
@@ -143,7 +154,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="partnership_purpose" class="form-label mt-4">Structures du
+                                                <label for="partnership_purpose" class="form-label mt-4">5.3 Structures du
                                                     Rectorat impliquées (Veuillez choisir dans la liste
                                                     suivante)</label>
                                                 {{-- <select class="selectpicker d-block" data-width="100%"  id="partnership_purpose" name="activity_1[structureUac]"   multiple required>
@@ -163,7 +174,7 @@
                                                             <input type="checkbox" name="activity_1[uacStructure][]" value="{{ $structure->name }}"
                                                                 id="structure.{{ $structure->id }}" aria-describedby="structureUac" />
                                                                 <label
-                                                                class="label"
+                                                                class="label mt-2"
                                                                 for="structure.{{ $structure->id }}">{{ $structure->name }}</label>
                                                             <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
                                                   <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
@@ -176,14 +187,14 @@
 
                                             <!-- new -->
                                             <div class="form-group">
-                                                <label for="structureEntity" class="form-label mt-4">Unités de formation
+                                                <label for="structureEntity" class="form-label mt-4">5.4 Unités de formation
                                                     et de Recherche impliquées (Veuillez choisir dans la liste
                                                     suivante)</label>
                                                 <div class="hiddenCB">
                                                     @foreach ($uacEntities as $Entity)
                                                         <input type="checkbox" name="activity_1[uacEntity][]" value="{{ $Entity->name }}"
                                                             id="entity.{{ $Entity->id }}" aria-describedby="structureEntity" />
-                                                        <label class="label"
+                                                        <label class="label mt-2 mr-3"
                                                             for="entity.{{ $Entity->id }}">{{ $Entity->name }}</label>
                                                         <!--<input type="checkbox" name="choice" id="cb2" /><label class="label" for="cb2">Choice B</label>
                                                   <input type="checkbox" name="choice" id="cb3" /><label class="label" for="cb3">Choice C</label>
@@ -202,7 +213,7 @@
 
 
                                             <div class="form-group">
-                                                <label for="fallout_ac" class="form-label mt-4"> Résultats obtenus
+                                                <label for="fallout_ac" class="form-label mt-4"> 5.5 Résultats obtenus
                                                 </label>
                                                 <input type="text" class="form-control mb-2"
                                                     name="activity_1[falloutUac][]" id="fallout_ac"
@@ -220,11 +231,11 @@
 
                                 <button id="add-activity" type="button" style="background-color: #2a8c28;"
                                     class="btn btn-primary btn-sm d-block mt-3">
-                                    Ajouter une activité
+                                    Ajouter une nouvelle activité
                                 </button>
                             </div>
                             <div class="container mt-5">
-                                <h3 style="color: #2a8c28">Dans l'exécution du partenariat entre votre structure et
+                                <h3 style="color: #2a8c28">6. Dans l'exécution du partenariat entre votre structure et
                                     l'UAC, quelles sont les difficultés que vous avez rencontrées ?</h3>
                             </div>
                             <div class="form-group">
@@ -235,7 +246,7 @@
                                     required></textarea>
                             </div>
                             <div class="container mt-3">
-                                <h3 style="color: #2a8c28;">Quelles sont les suggestions que vous pouvez formuler pour
+                                <h3 style="color: #2a8c28;">7. Quelles sont les suggestions que vous pouvez formuler pour
                                     aplanir ces difficultés ?</h3>
                             </div>
                             <div class="form-group">
@@ -247,26 +258,26 @@
                             </div>
 
                             <div class="container mt-3 mb-3">
-                                <h3 style="color: #2a8c28;">Quelques renseignements importants</h3>
+                                <h3 style="color: #2a8c28;">8. Quelques renseignements importants</h3>
                             </div>
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Par quelle adresse email fonctionnelle
+                                <label for="partner_name" class="form-label">8.1 Par quelle adresse email fonctionnelle
                                     peut-on contacter votre structure ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="email"
+                                <input type="email" class="form-control mb-2" id="partnership_purpose" name="email"
                                     placeholder="Veuillez taper votre e-mail..." required />
                             </div>
 
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Par quel numéro de téléphone
+                                <label for="partner_name" class="form-label">8.2 Par quel numéro de téléphone
                                     fonctionnel peut-on joindre votre organisation ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="phone"
+                                <input type="text" class="form-control mb-2" id="partnership_purpose" name="phone"
                                     placeholder="numéro de téléphone fonctionnel de l’organisation..." required />
                             </div>
                             <!-- start -->
                             <div class="form-group mb-3">
-                                Avez-vous un numéro de téléphone WhatsApp (Oui ou non): Oui<input type="checkbox"
+                                8.3 Avez-vous un numéro de téléphone WhatsApp (Oui ou non): Oui<input type="checkbox"
                                     id="trigger" name="question"> Non <input type="checkbox" id="trigger"
                                     name="question">
                             </div>
@@ -277,18 +288,18 @@
 
                             <!-- end -->
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Quels sont le nom et les prénoms du
+                                <label for="partner_name" class="form-label">8.4 Quels sont le nom et les prénoms du
                                     répondant ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="identite"
+                                <input type="text" class="form-control mb-2" id="partnership_purpose" name="identite"
                                     placeholder="Identité du répondant" required />
                             </div>
 
                             <div class="form-group">
-                                <label for="partner_name" class="form-label">Quel est le poste occupé par le
+                                <label for="partner_name" class="form-label">8.5 Quel est le poste occupé par le
                                     répondant au sein de la structure ?</label>
 
-                                <input type="search" class="form-control mb-2" id="partnership_purpose" name="poste"
+                                <input type="text" class="form-control mb-2" id="partnership_purpose" name="poste"
                                     placeholder="Le poste occupé" required />
                             </div>
                             <span>Veuillez cliquer sur le bouton "Soumettre ci-dessous" pour soumettre les informations
@@ -392,6 +403,28 @@
             });
         });
     </script>
+    <script>
+        $(function() {
+
+
+            var checkbox = $("#cbAutre");
+            var hidden = $("#autre");
+
+            hidden.hide();
+
+
+            checkbox.change(function() {
+
+                if (checkbox.is(':checked')) {
+
+                    hidden.show();
+                } else {
+                    hidden.hide();
+                }
+            });
+        });
+    </script>
+    @livewireScripts
 
 </body>
 

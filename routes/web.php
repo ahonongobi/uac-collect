@@ -17,3 +17,9 @@ Route::get('/add-formation' , [MainController::class,'addFormation']);
 Route::post('/store-formation' , [MainController::class,'storeFormation'])->name('store-formation');
 Route::post('/store-object' , [MainController::class,'storeObjectParteners'])->name('sotre-object');
 Route::get("/see" , [EditController::class,'edit']);
+Route::get("/add-type" , [MainController::class,'addType'])->name('add-type');
+Route::post('/store-type' , [MainController::class,'storeType'])->name('store-type');
+Route::get("/delete-type/{id}" , [MainController::class,'DeleteType'])->name('delete-type');
+
+
+

@@ -7,9 +7,11 @@ use App\Models\ImpactStructure;
 use App\Models\ObjectParteners;
 use App\Models\Others;
 use App\Models\Partner;
+use App\Models\TypePartenariat;
 use App\Models\UacEntity;
 use App\Models\UacStructure;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class MainController extends Controller
 {
@@ -20,7 +22,6 @@ class MainController extends Controller
             'partner_name' => 'required',
             'partner_type' => 'required',
             'year_signature' => 'required',
-            'object' => 'required'
         ]);
 
         $objects = "";
@@ -34,9 +35,26 @@ class MainController extends Controller
         // $parters->year_signature = $request->year_signature;
         // $parters->suggestions = $request->suggestions;
         // $parters->difficults = $request->difficults;
-        foreach($request->object as $mot){
-            $objects = $objects. ','.$mot;
+        if ($request->object != null){
+            foreach($request->object as $mot){
+                $objects = $objects. ';'.$mot;
+            }
+            $objects = $objects. ';'.$request->autre;
+        } else{
+            $objects = ';'.$request->autre;
         }
+
+
+        if($request->autre != null){
+            ObjectParteners::firstOrCreate([
+                'name' => $request->autre,
+            ]);
+        }
+
+
+           // $objects = $objects. ';' .$request->autre;
+
+
 
         Partner::firstOrCreate([
             'name' => $request->partner_name,
@@ -196,7 +214,7 @@ class MainController extends Controller
         $objects = ObjectParteners::all();
 
         //return view('main.index', compact('uacEntities', 'uacStructures', 'objects'));
-        $request->session()->flash('message', 'Vos informations ont été soumis avec succès!');
+        $request->session()->flash('message', 'Vos informations ont été soumises avec succès!');
 
         return back();
 
@@ -227,6 +245,20 @@ class MainController extends Controller
         return view('main.formation', compact('formations'));
     }
 
+    public function addType(){
+        $types = TypePartenariat::all();
+        return view('main.type', compact('types'));
+    }
+
+    public function DeleteType($id){
+        $type = TypePartenariat::where('id', $id);
+        $type->delete();
+        $types = TypePartenariat::all();
+        return view('main.type', compact('types'));
+    }
+
+
+
     public function storeFormation(Request $request){
         $request->validate(['formation' => 'required']);
 
@@ -235,6 +267,16 @@ class MainController extends Controller
         $formation->save();
         $formations = UacEntity::all();
         return view('main.formation', compact('formations'));
+    }
+
+    public function storeType(Request $request){
+        $request->validate(['type' => 'required']);
+
+        $type = new TypePartenariat();
+        $type->name = $request->type;
+        $type->save();
+        $types = TypePartenariat::all();
+        return view('main.type', compact('types'));
     }
 
     public function storeObjectParteners(Request $request){
@@ -329,8 +371,9 @@ class MainController extends Controller
         $uacEntities = UacEntity::all();
         $uacStructures = UacStructure::all();
         $objects = ObjectParteners::all();
+        $types = TypePartenariat::all();
 
-        return view('main.index', compact('uacEntities', 'uacStructures' ,'objects'));
+        return view('main.index', compact('uacEntities', 'uacStructures' ,'objects', 'types'));
     }
 
 

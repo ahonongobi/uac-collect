@@ -6,34 +6,46 @@
     color: white;
     background-color: #2a8c28;
   }
-  
-  .hiddenCB div {
+
+   .hiddenCB div {
     display: inline;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  
+
   .hiddenCB input[type="checkbox"],
   .hiddenCB input[type="radio"] {
     display: none;
-   
-    
+
+
   }
-  
+
+  .ischeck {
+      opacity: 0;
+  }
+
   .hiddenCB label {
-    
+
     cursor: pointer;
   }
-  
+
   .hiddenCB input[type="checkbox"]+label:hover{
     background: rgba(0, 128, 128, .8);
   }
-  
+
   .hiddenCB input[type="checkbox"]:checked+label {
     background: rgba(0, 128, 128, .4);
   }
-  
+
   .hiddenCB input[type="checkbox"]:checked+label:hover{
     background: rgba(0, 128, 128, 0, .7);
+  }
+
+  .hiddenCB input[type="checkbox"]:checked+label > .ischeck{
+    opacity: 1;
+  }
+
+  body{
+    font-weight: bold;
   }

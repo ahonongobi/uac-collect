@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ObjectParteners extends Model
+class partnerName extends Model
 {
     use HasFactory;
-    protected $table = 'object_parteners';
-    protected $guarded = [];
+     protected $table = "partenaire";
 }
